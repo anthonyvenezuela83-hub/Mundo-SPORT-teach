@@ -3,228 +3,375 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mundo Sport and Tech</title>
+    <title>Mundo Sport & Tech | Artículos Deportivos y Tecnología</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandDark: '#0f172a',
+                        brandAccent: '#2563eb',
+                        brandGreen: '#10b981',
+                        brandOrange: '#f97316'
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body class="bg-gray-900 text-gray-100 font-sans">
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between">
 
-    <!-- Header / Navbar -->
-    <header class="bg-gray-800 border-b border-gray-700 p-4 sticky top-0 z-50">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-xl font-bold tracking-wider text-blue-400">
-                <i class="fas fa-store mr-2"></i>Mundo Sport and Tech
-            </h1>
-            <button onclick="toggleCarritoModal()" class="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-lg font-semibold flex items-center transition">
-                <i class="fas fa-shopping-cart mr-2"></i> Carrito (<span id="contador-carrito">0</span>)
-            </button>
+    <!-- HEADER / NAVBAR -->
+    <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo & Brand -->
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-blue-600 to-emerald-500 flex items-center justify-center shadow-md shadow-blue-500/20">
+                    <i class="fa-solid fa-bolt text-white text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight bg-gradient-to-r from-blue-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent">
+                        MUNDO SPORT & TECH
+                    </h1>
+                    <p class="text-xs text-slate-400 font-medium">Deporte, Táctico y Tecnología</p>
+                </div>
+            </div>
+
+            <!-- Cart Trigger Button -->
+            <div class="flex items-center space-x-4">
+                <button onclick="toggleCart()" class="relative bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2.5 rounded-xl border border-slate-700 transition flex items-center space-x-2 shadow-inner">
+                    <i class="fa-solid fa-cart-shopping text-blue-400"></i>
+                    <span class="hidden sm:inline font-medium text-sm">Carrito</span>
+                    <span id="cart-badge" class="absolute -top-2 -right-2 bg-emerald-500 text-slate-950 font-bold text-xs w-6 h-6 rounded-full flex items-center justify-center shadow-md hidden">0</span>
+                </button>
+            </div>
         </div>
     </header>
 
-    <!-- Contenido Principal (Ejemplo de productos) -->
-    <main class="container mx-auto p-6">
-        <h2 class="text-2xl font-bold mb-6 text-center">Catálogo de Productos</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Producto de Ejemplo 1 -->
-            <div class="bg-gray-800 border border-gray-700 rounded-lg p-4 flex flex-col justify-between">
+    <!-- HERO SECTION -->
+    <section class="relative bg-gradient-to-b from-slate-900 to-slate-950 py-16 lg:py-24 border-b border-slate-800/60 overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#2563eb_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center max-w-3xl">
+            <span class="inline-flex items-center space-x-2 bg-blue-950/80 border border-blue-800/60 text-blue-300 px-4 py-1.5 rounded-full text-xs font-semibold mb-6 shadow-sm">
+                <i class="fa-solid fa-fire text-orange-400"></i>
+                <span>Envíos Nacionales a toda Venezuela vía MRW, Zoom y Tealca</span>
+            </span>
+            <h2 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+                Calidad y Rendimiento al <span class="bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">Máximo Nivel</span>
+            </h2>
+            <p class="text-slate-400 text-base sm:text-lg mb-8 leading-relaxed">
+                Equípate con nuestros productos estrella: Pantalones tácticos resistentes, franelas deportivas de alto rendimiento, UPS de respaldo eléctrico y relojes inteligentes de última generación.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#catalogo" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-3.5 rounded-xl shadow-lg shadow-blue-600/30 transition flex items-center space-x-2">
+                    <span>Ver Catálogo</span>
+                    <i class="fa-solid fa-arrow-down"></i>
+                </a>
+                <a href="https://wa.me/584160445660?text=Hola,%20Mundo%20Sport%20&%20Tech,%20estoy%20interesado%20en%20sus%20productos." target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold px-8 py-3.5 rounded-xl shadow-lg shadow-emerald-600/20 transition flex items-center space-x-2">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>Escríbenos al WhatsApp Business</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATALOG SECTION -->
+    <main id="catalogo" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex-grow w-full">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+            <div>
+                <h3 class="text-2xl sm:text-3xl font-bold text-white">Nuestros Productos Estrella</h3>
+                <p class="text-slate-400 text-sm mt-1">Selecciona los artículos que deseas y arma tu pedido fácilmente.</p>
+            </div>
+            <!-- Category Filters -->
+            <div class="flex flex-wrap gap-2">
+                <button onclick="filterProducts('all')" id="btn-all" class="cat-btn px-4 py-2 rounded-xl text-sm font-semibold bg-blue-600 text-white transition shadow">Todos</button>
+                <button onclick="filterProducts('tactico')" id="btn-tactico" class="cat-btn px-4 py-2 rounded-xl text-sm font-semibold bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800 transition">Deportes & Táctico</button>
+                <button onclick="filterProducts('tech')" id="btn-tech" class="cat-btn px-4 py-2 rounded-xl text-sm font-semibold bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800 transition">Tecnología & Energía</button>
+            </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Product 1 -->
+            <div class="product-card bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden flex flex-col justify-between shadow-xl transition hover:border-slate-700" data-category="tactico">
                 <div>
-                    <img src="https://via.placeholder.com/300x200" alt="Producto" class="rounded-md mb-4 object-cover w-full h-48">
-                    <h3 class="text-lg font-semibold mb-2">Calzado Deportivo Running</h3>
-                    <p class="text-gray-400 text-sm mb-4">Zapatillas de alto rendimiento para entrenamiento y running.</p>
+                    <div class="relative h-56 bg-slate-950 overflow-hidden group">
+                        <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=600&q=80" alt="Pantalón Táctico" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">Táctico</span>
+                    </div>
+                    <div class="p-5">
+                        <h4 class="text-lg font-bold text-white mb-1">Pantalón Táctico Militar</h4>
+                        <p class="text-slate-400 text-xs mb-3 leading-relaxed">Resistente al desgaste, múltiples bolsillos reforzados. Ideal para exteriores y trabajo activo. Talla 32 disponible.</p>
+                        <div class="text-xl font-extrabold text-emerald-400 mb-2">$35.00</div>
+                    </div>
                 </div>
-                <div class="flex justify-between items-center mt-4">
-                    <span class="text-xl font-bold text-green-400">$45.00</span>
-                    <button onclick="agregarAlCarrito('Calzado Deportivo Running', 45.00)" class="bg-green-600 hover:bg-green-500 px-3 py-2 rounded text-sm font-semibold transition">
-                        <i class="fas fa-cart-plus mr-1"></i> Agregar
+                <div class="p-5 pt-0">
+                    <button onclick="addToCart('Pantalón Táctico Militar', 35.00, 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=600&q=80')" class="w-full bg-slate-800 hover:bg-blue-600 text-white font-semibold py-2.5 rounded-xl transition flex items-center justify-center space-x-2 text-sm border border-slate-700 hover:border-blue-600 shadow-sm">
+                        <i class="fa-solid fa-cart-plus"></i>
+                        <span>Agregar al Carrito</span>
                     </button>
                 </div>
             </div>
 
-            <!-- Producto de Ejemplo 2 -->
-            <div class="bg-gray-800 border border-gray-700 rounded-lg p-4 flex flex-col justify-between">
+            <!-- Product 2 -->
+            <div class="product-card bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden flex flex-col justify-between shadow-xl transition hover:border-slate-700" data-category="tactico">
                 <div>
-                    <img src="https://via.placeholder.com/300x200" alt="Producto" class="rounded-md mb-4 object-cover w-full h-48">
-                    <h3 class="text-lg font-semibold mb-2">Smartwatch Deportivo Pro</h3>
-                    <p class="text-gray-400 text-sm mb-4">Reloj inteligente con monitor de ritmo cardíaco y GPS integrado.</p>
+                    <div class="relative h-56 bg-slate-950 overflow-hidden group">
+                        <img src="https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&w=600&q=80" alt="Franela Deportiva" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">Deportes</span>
+                    </div>
+                    <div class="p-5">
+                        <h4 class="text-lg font-bold text-white mb-1">Franela Deportiva Secado Rápido</h4>
+                        <p class="text-slate-400 text-xs mb-3 leading-relaxed">Tela transpirable de alta tecnología diseñada para entrenamiento intenso y máximo confort diario.</p>
+                        <div class="text-xl font-extrabold text-emerald-400 mb-2">$15.00</div>
+                    </div>
                 </div>
-                <div class="flex justify-between items-center mt-4">
-                    <span class="text-xl font-bold text-green-400">$30.00</span>
-                    <button onclick="agregarAlCarrito('Smartwatch Deportivo Pro', 30.00)" class="bg-green-600 hover:bg-green-500 px-3 py-2 rounded text-sm font-semibold transition">
-                        <i class="fas fa-cart-plus mr-1"></i> Agregar
+                <div class="p-5 pt-0">
+                    <button onclick="addToCart('Franela Deportiva Secado Rápido', 15.00, 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&w=600&q=80')" class="w-full bg-slate-800 hover:bg-blue-600 text-white font-semibold py-2.5 rounded-xl transition flex items-center justify-center space-x-2 text-sm border border-slate-700 hover:border-blue-600 shadow-sm">
+                        <i class="fa-solid fa-cart-plus"></i>
+                        <span>Agregar al Carrito</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden flex flex-col justify-between shadow-xl transition hover:border-slate-700" data-category="tech">
+                <div>
+                    <div class="relative h-56 bg-slate-950 overflow-hidden group">
+                        <img src="https://images.unsplash.com/photo-1588702547923-7093a0c3bb33?auto=format&fit=crop&w=600&q=80" alt="UPS Respaldo de Energía" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 left-3 bg-emerald-600 text-slate-950 font-bold text-xs px-3 py-1 rounded-full shadow">Tecnología</span>
+                    </div>
+                    <div class="p-5">
+                        <h4 class="text-lg font-bold text-white mb-1">UPS / Regulador de Respaldo</h4>
+                        <p class="text-slate-400 text-xs mb-3 leading-relaxed">Protege tu router, modem y equipos sensibles ante fluctuaciones y cortes eléctricos. Indispensable en el hogar.</p>
+                        <div class="text-xl font-extrabold text-emerald-400 mb-2">$65.00</div>
+                    </div>
+                </div>
+                <div class="p-5 pt-0">
+                    <button onclick="addToCart('UPS / Regulador de Respaldo', 65.00, 'https://images.unsplash.com/photo-1588702547923-7093a0c3bb33?auto=format&fit=crop&w=600&q=80')" class="w-full bg-slate-800 hover:bg-blue-600 text-white font-semibold py-2.5 rounded-xl transition flex items-center justify-center space-x-2 text-sm border border-slate-700 hover:border-blue-600 shadow-sm">
+                        <i class="fa-solid fa-cart-plus"></i>
+                        <span>Agregar al Carrito</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden flex flex-col justify-between shadow-xl transition hover:border-slate-700" data-category="tech">
+                <div>
+                    <div class="relative h-56 bg-slate-950 overflow-hidden group">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80" alt="Smartwatch Deportivo" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 left-3 bg-emerald-600 text-slate-950 font-bold text-xs px-3 py-1 rounded-full shadow">Tecnología</span>
+                    </div>
+                    <div class="p-5">
+                        <h4 class="text-lg font-bold text-white mb-1">Smartwatch Deportivo Pro</h4>
+                        <p class="text-slate-400 text-xs mb-3 leading-relaxed">Monitoreo cardíaco, notificaciones inteligentes, modos deportivos avanzados y resistencia al agua.</p>
+                        <div class="text-xl font-extrabold text-emerald-400 mb-2">$45.00</div>
+                    </div>
+                </div>
+                <div class="p-5 pt-0">
+                    <button onclick="addToCart('Smartwatch Deportivo Pro', 45.00, 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80')" class="w-full bg-slate-800 hover:bg-blue-600 text-white font-semibold py-2.5 rounded-xl transition flex items-center justify-center space-x-2 text-sm border border-slate-700 hover:border-blue-600 shadow-sm">
+                        <i class="fa-solid fa-cart-plus"></i>
+                        <span>Agregar al Carrito</span>
                     </button>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- Modal / Sección del Carrito -->
-    <div id="carrito-modal" class="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50 hidden">
-        <div class="bg-gray-800 border border-gray-700 rounded-xl p-6 w-full max-w-lg max-h-[90vh] overflow-y-auto m-4">
-            <div class="flex justify-between items-center mb-4 border-b border-gray-700 pb-3">
-                <h2 class="text-xl font-bold flex items-center text-blue-400">
-                    <i class="fas fa-shopping-bag mr-2"></i> Tu Carrito de Compras
-                </h2>
-                <button onclick="toggleCarritoModal()" class="text-gray-400 hover:text-white text-xl">&times;</button>
+    <!-- SHOPPING CART MODAL -->
+    <div id="cart-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-lg overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
+            <!-- Header -->
+            <div class="p-5 border-b border-slate-800 flex items-center justify-between bg-slate-900/50">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-bag-shopping text-blue-400 text-lg"></i>
+                    <h3 class="text-lg font-bold text-white">Tu Carrito de Compras</h3>
+                </div>
+                <button onclick="toggleCart()" class="text-slate-400 hover:text-white p-2 rounded-xl bg-slate-800/60 transition">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
             </div>
 
-            <!-- Listado de ítems en el carrito -->
-            <div id="lista-carrito" class="mb-4 divide-y divide-gray-700">
-                <p class="text-gray-400 text-center py-4">El carrito está vacío.</p>
+            <!-- Cart Items List -->
+            <div id="cart-items" class="p-5 overflow-y-auto flex-grow divide-y divide-slate-800">
+                <p class="text-slate-400 text-center py-8 text-sm">Tu carrito está vacío.</p>
             </div>
 
-            <div class="flex justify-between items-center font-bold text-lg mb-6 border-t border-gray-700 pt-3">
-                <span>Total General:</span>
-                <span id="carrito-total" class="text-green-400">$0.00</span>
-            </div>
-
-            <!-- FORMULARIO DE DATOS DEL CLIENTE -->
-            <div class="bg-gray-900 p-4 rounded-lg mb-6 border border-gray-700">
-                <h3 class="text-md font-bold mb-3 text-blue-300"><i class="fas fa-user-edit mr-2"></i>Datos para el Pedido</h3>
-                
-                <div class="mb-3">
-                    <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Nombre y Apellido *</label>
-                    <input type="text" id="cliente-nombre" placeholder="Ej. Juan Pérez" 
-                        class="w-full p-2.5 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-blue-500 text-sm">
+            <!-- Footer & Checkout Form -->
+            <div class="p-5 border-t border-slate-800 bg-slate-900/80">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-slate-400 font-medium text-sm">Total Estimado:</span>
+                    <span id="cart-total" class="text-2xl font-extrabold text-emerald-400">$0.00</span>
                 </div>
 
-                <div class="mb-3">
-                    <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Método de Entrega</label>
-                    <select id="cliente-entrega" class="w-full p-2.5 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-blue-500 text-sm">
-                        <option value="Retiro en Tienda">Retiro en Tienda</option>
-                        <option value="Envío nacional (MRW / El Vigía)">Envío nacional (MRW / El Vigía)</option>
-                        <option value="Delivery local">Delivery local</option>
+                <!-- Customer Details Form -->
+                <div class="space-y-3 mb-4">
+                    <input type="text" id="customer-name" placeholder="Tu Nombre y Apellido" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500">
+                    <select id="shipping-method" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-300 focus:outline-none focus:border-blue-500">
+                        <option value="Envío Nacional vía MRW">Envío Nacional vía MRW</option>
+                        <option value="Envío Nacional vía Zoom">Envío Nacional vía Zoom</option>
+                        <option value="Envío Nacional vía Tealca">Envío Nacional vía Tealca</option>
+                        <option value="Retiro en Tienda / Local">Retiro en Tienda / Local</option>
                     </select>
                 </div>
 
-                <div>
-                    <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Método de Pago Preferido</label>
-                    <select id="cliente-pago" class="w-full p-2.5 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-blue-500 text-sm">
-                        <option value="Pago Móvil / Transferencia (Bs)">Pago Móvil / Transferencia (Bs)</option>
-                        <option value="Binance Pay (USDT/USDC)">Binance Pay (USDT/USDC)</option>
-                        <option value="Efectivo / Zelle">Efectivo / Zelle</option>
-                    </select>
-                </div>
+                <button onclick="checkoutWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold py-3.5 rounded-xl transition flex items-center justify-center space-x-2 shadow-lg shadow-emerald-600/20 text-sm">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>Enviar Pedido por WhatsApp Business</span>
+                </button>
             </div>
-
-            <!-- Botón de Envío a WhatsApp -->
-            <button onclick="enviarPedidoWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center transition shadow-lg">
-                <i class="fab fa-whatsapp text-xl mr-2"></i> Enviar Pedido por WhatsApp
-            </button>
         </div>
     </div>
 
-    <!-- JavaScript del Carrito y WhatsApp -->
-    <script>
-        // Variables globales del carrito
-        let carrito = [];
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 border-t border-slate-800 py-8 text-center text-slate-400 text-xs sm:text-sm">
+        <div class="max-w-7xl mx-auto px-4 space-y-3">
+            <p class="font-bold tracking-wider text-slate-300">MUNDO SPORT & TECH</p>
+            <p>Venta de artículos deportivos, tácticos y tecnología de punta.</p>
+            <p class="text-slate-600 pt-2">© 2026 Todos los derechos reservados.</p>
+        </div>
+    </footer>
 
-        function toggleCarritoModal() {
-            const modal = document.getElementById('carrito-modal');
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        let cart = [];
+
+        function toggleCart() {
+            const modal = document.getElementById('cart-modal');
             modal.classList.toggle('hidden');
         }
 
-        function agregarAlCarrito(nombre, precio) {
-            const productoExistente = carrito.find(item => item.nombre === nombre);
-            if (productoExistente) {
-                productoExistente.cantidad++;
+        function addToCart(name, price, image) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1;
             } else {
-                carrito.push({ nombre, precio, cantidad: 1 });
+                cart.push({ name, price, image, quantity: 1 });
             }
-            actualizarCarritoUI();
-            // Abre automáticamente el carrito para que el usuario vea su producto agregado
-            document.getElementById('carrito-modal').classList.remove('hidden');
+            updateCartUI();
+            
+            const badge = document.getElementById('cart-badge');
+            badge.classList.remove('hidden');
         }
 
-        function cambiarCantidad(index, cambio) {
-            carrito[index].cantidad += cambio;
-            if (carrito[index].cantidad <= 0) {
-                carrito.splice(index, 1);
+        function updateCartQuantity(index, change) {
+            cart[index].quantity += change;
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
             }
-            actualizarCarritoUI();
+            updateCartUI();
         }
 
-        function actualizarCarritoUI() {
-            const listaCarrito = document.getElementById('lista-carrito');
-            const contadorCarrito = document.getElementById('contador-carrito');
-            const carritoTotal = document.getElementById('carrito-total');
+        function updateCartUI() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartBadge = document.getElementById('cart-badge');
+            const cartTotal = document.getElementById('cart-total');
 
-            let totalItems = 0;
-            let totalGeneral = 0;
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            if (totalItems > 0) {
+                cartBadge.textContent = totalItems;
+                cartBadge.classList.remove('hidden');
+            } else {
+                cartBadge.classList.add('hidden');
+            }
 
-            if (carrito.length === 0) {
-                listaCarrito.innerHTML = `<p class="text-gray-400 text-center py-4">El carrito está vacío.</p>`;
-                contadorCarrito.innerText = 0;
-                carritoTotal.innerText = "$0.00";
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="text-slate-400 text-center py-8 text-sm">Tu carrito está vacío.</p>';
+                cartTotal.textContent = '$0.00';
                 return;
             }
 
-            listaCarrito.innerHTML = "";
-            carrito.forEach((item, index) => {
-                let subtotal = item.precio * item.cantidad;
-                totalItems += item.cantidad;
-                totalGeneral += subtotal;
+            let html = '';
+            let total = 0;
 
-                listaCarrito.innerHTML += `
-                    <div class="py-3 flex justify-between items-center">
-                        <div>
-                            <h4 class="font-semibold text-sm">${item.nombre}</h4>
-                            <p class="text-xs text-gray-400">$${item.precio.toFixed(2)} x ${item.cantidad} = <span class="text-green-400 font-bold">$${subtotal.toFixed(2)}</span></p>
+            cart.forEach((item, index) => {
+                const subtotal = item.price * item.quantity;
+                total += subtotal;
+                html += `
+                    <div class="py-3 flex items-center justify-between gap-3">
+                        <div class="flex items-center space-x-3">
+                            <img src="${item.image}" alt="${item.name}" class="w-14 h-14 object-cover rounded-xl border border-slate-800">
+                            <div>
+                                <h4 class="text-sm font-bold text-white">${item.name}</h4>
+                                <p class="text-emerald-400 text-xs font-semibold">$${item.price.toFixed(2)} c/u</p>
+                            </div>
                         </div>
                         <div class="flex items-center space-x-2">
-                            <button onclick="cambiarCantidad(${index}, -1)" class="bg-gray-700 hover:bg-gray-600 px-2 py-1 rounded text-xs">-</button>
-                            <span class="text-sm font-semibold">${item.cantidad}</span>
-                            <button onclick="cambiarCantidad(${index}, 1)" class="bg-gray-700 hover:bg-gray-600 px-2 py-1 rounded text-xs">+</button>
+                            <button onclick="updateCartQuantity(${index}, -1)" class="w-7 h-7 bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-300 font-bold flex items-center justify-center transition">-</button>
+                            <span class="text-sm font-bold text-white w-5 text-center">${item.quantity}</span>
+                            <button onclick="updateCartQuantity(${index}, 1)" class="w-7 h-7 bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-300 font-bold flex items-center justify-center transition">+</button>
                         </div>
                     </div>
                 `;
             });
 
-            contadorCarrito.innerText = totalItems;
-            carritoTotal.innerText = `$${totalGeneral.toFixed(2)}`;
+            cartItemsContainer.innerHTML = html;
+            cartTotal.textContent = `$${total.toFixed(2)}`;
         }
 
-        function enviarPedidoWhatsApp() {
-            const nombre = document.getElementById('cliente-nombre').value.trim();
-            const entrega = document.getElementById('cliente-entrega').value;
-            const pago = document.getElementById('cliente-pago').value;
+        function filterProducts(category) {
+            const cards = document.querySelectorAll('.product-card');
+            const buttons = document.querySelectorAll('.cat-btn');
 
-            if (!nombre) {
-                alert("Por favor, ingresa tu nombre y apellido para continuar con el pedido.");
-                document.getElementById('cliente-nombre').focus();
-                return;
-            }
-
-            if (carrito.length === 0) {
-                alert("Tu carrito está vacío.");
-                return;
-            }
-
-            let detalleProductos = "";
-            let totalGeneral = 0;
-
-            carrito.forEach((item, index) => {
-                let subtotal = item.precio * item.cantidad;
-                totalGeneral += subtotal;
-                detalleProductos += `*${index + 1}. ${item.nombre}*\n   Cant: ${item.cantidad} | Subtotal: $${subtotal.toFixed(2)}\n`;
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white');
+                btn.classList.add('bg-slate-900', 'text-slate-300', 'border', 'border-slate-800');
             });
 
-            // Construcción del mensaje con formato WhatsApp
-            let mensaje = `¡Hola! *Mundo Sport and Tech*, quiero realizar el siguiente pedido:\n\n` +
-                          `👤 *Cliente:* ${nombre}\n` +
-                          `📦 *Método de Entrega:* ${entrega}\n` +
-                          `💳 *Método de Pago:* ${pago}\n\n` +
-                          `🛒 *Detalle del Carrito:*\n` +
-                          detalleProductos + `\n` +
-                          `💰 *Total a Pagar:* *$${totalGeneral.toFixed(2)}*\n\n` +
-                          `Quedo atento para coordinar el pago y la entrega. ¡Gracias!`;
+            const activeBtn = document.getElementById(`btn-${category}`);
+            activeBtn.classList.remove('bg-slate-900', 'text-slate-300', 'border', 'border-slate-800');
+            activeBtn.classList.add('bg-blue-600', 'text-white');
 
-            // Reemplaza con tu número real de WhatsApp Business (código de país + número, sin signos +)
-            const numeroWhatsApp = "584120000000"; 
-            const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
 
-            window.open(urlWhatsApp, '_blank');
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                alert('Tu carrito está vacío. Agrega productos antes de enviar el pedido.');
+                return;
+            }
+
+            const customerName = document.getElementById('customer-name').value.trim();
+            const shippingMethod = document.getElementById('shipping-method').value;
+
+            if (!customerName) {
+                alert('Por favor ingresa tu nombre y apellido.');
+                document.getElementById('customer-name').focus();
+                return;
+            }
+
+            let message = "¡Hola, *Mundo Sport & Tech*! 🛍️\n\n";
+            message += "Mi nombre es *" + customerName + "* y quiero hacer el siguiente pedido:\n\n";
+
+            let total = 0;
+            cart.forEach(item => {
+                const subtotal = item.price * item.quantity;
+                total += subtotal;
+                message += "• " + item.quantity + "x " + item.name + " - $" + subtotal.toFixed(2) + "\n";
+            });
+
+            message += "\n*Total a Pagar: $" + total.toFixed(2) + "*\n";
+            message += "🚚 *Método de entrega/envío:* " + shippingMethod + "\n\n";
+            message += "Quedo atento para coordinar el pago y el envío. ¡Gracias!";
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = "https://wa.me/584160445660?text=" + encodedMessage;
+            window.open(whatsappUrl, '_blank');
         }
     </script>
 </body>
